@@ -1,0 +1,23 @@
+body {
+    min-height: 100vh;
+    background-color: #2b54db;
+}
+
+#mainContainer {
+    margin: 10vh 20vw;
+    font-family: sans-serif;
+    background-color: white;
+    box-shadow: 4px 5px 8px #525252;
+    padding: 20px;
+}
+
+#mainContainer h1 {
+    color: #2b54db;
+    text-align: center;
+}
+
+#mainContainer p {
+    text-align: center;
+    font-weight: 300rem;
+    font-size: 1rem;
+}
