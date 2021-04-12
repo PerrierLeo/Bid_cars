@@ -1,5 +1,6 @@
 <?php
 
+
 /**
  * configuration de la connexion à la base de données
  */
@@ -11,4 +12,6 @@ $db_password = 'root';
 /**
  * ouverture de la connexion
  */
-$dbh = new PDO($db_adress, $db_user, $db_password);
+
+
+$dbh = new PDO($db_address, $db_user, $db_password);
