@@ -75,7 +75,7 @@ class Subscribe
         $firstname = filter_var($_POST["firstname"]); //, FILTER_SANITIZE_STRING);
         $lastname = filter_var($_POST["lastname"]); //, FILTER_SANITIZE_STRING);
         $email = filter_var($_POST["email"]); //, FILTER_SANITIZE_EMAIL);
-        $password = filter_var($_POST['password']);
+        $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
 
 

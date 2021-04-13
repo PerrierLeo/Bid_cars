@@ -13,6 +13,7 @@ include_once __DIR__ . "/controllers/default.php";
 include_once __DIR__ . "/controllers/add_ads.php";
 include_once __DIR__ . "/controllers/subscribe.php";
 include_once __DIR__ . "/controllers/ad.php";
+include_once __DIR__ . "/controllers/connect.php";
 
 
 use App\Controllers\ad;
@@ -21,10 +22,8 @@ use App\Controllers\Home;
 use App\Controllers\DefaultPage;
 use App\Controllers\Add_ads;
 use App\Controllers\Subscribe;
-
-
-
-
+use App\Controllers\Connect;
+use App\Controllers\validate_Enchere;
 
 /**
  * Requête
@@ -62,8 +61,16 @@ $router->get("/inscription",  [new Subscribe(), 'render']);
 /* POST / - Traitement des données du formulaire */
 $router->post("/inscription",  [new Subscribe(), 'read_data']);
 
+
+$router->get('/connect', [new Connect(), 'render']);
+
+$router->post('/connect', [new Connect(), 'login']);
+
 /* GET / - Page d'affichage de l'annonce en question en dynamique */
 $router->get("/annonce/:id",  [new Ad(), 'renderend']);
+
+/* GET / - Page d'affichage de l'annonce en question en dynamique */
+$router->post("/annonce/:id",  [new validate_Enchere(), 'validate_Enchere']);
 
 
 
