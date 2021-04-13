@@ -5,10 +5,9 @@
 .containerHome {
   display: flex;
   width: 100%;
-  flex-wrap: flex;
+  flex-wrap: wrap;
 }
 .containerAd {
-  display: flex;
   border: 1px solid black;
   margin: 10px;
 }

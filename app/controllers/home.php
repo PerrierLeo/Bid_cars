@@ -46,8 +46,8 @@ class Home
                             <li> <?= $ad['model'] ?> </li>
                             <li> <?= $ad['year_car'] ?> </li>
                         </div>
-                        <button class='buttonHome' type='s
-                        ubmit'>voir l'annonce</button>
+
+                        <a href='annonce/<?= $ad['ID']; ?>'>voir annonce </a>
                     </div>
 
                 <?php } ?>

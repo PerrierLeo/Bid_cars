@@ -91,7 +91,7 @@ class Subscribe
         //Si les données sont validées 
         if ($data_validated === true) {
             /* Préparation de la requête */
-            $query = $dbh->prepare("INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?) WHERE email= $email ");
+            $query = $dbh->prepare("INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)");
             var_dump($dbh);
             /* Execution de la requête */
             $result = $query->execute([$firstname, $lastname, $email, $password]);
