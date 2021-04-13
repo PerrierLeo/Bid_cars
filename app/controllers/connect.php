@@ -24,7 +24,7 @@ class Connect
         } else {
             if ($isPasswordCorrect) {
                 session_start();
-                $_SESSION['ID'] = $result['ID'];
+                $_SESSION['id'] = $result['id'];
                 $_SESSION['email'] = $email;
                 echo 'Vous êtes connecté !';
             } else {

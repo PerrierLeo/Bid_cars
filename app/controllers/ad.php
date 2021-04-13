@@ -16,9 +16,8 @@ class ad
     public function renderend($value)
     {
 
-        require_once __DIR__ . "../../includes/db.php";
-
-        $ads = $dbh->query("SELECT * FROM ads WHERE ID = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
+        require __DIR__ . "../../includes/db.php";
+        $ads = $dbh->query("SELECT * FROM ads WHERE ID = $value[id]")->fetchAll(\PDO::FETCH_ASSOC);
 
 
 ?>
@@ -50,18 +49,26 @@ class ad
                         <li> puissance : <?= $ad['power_car'] ?> </li>
                         <li> kilometres : <?= $ad['kilometers'] ?> </li>
                         <li> description : <?= $ad['description'] ?> </li>
+                        <?php if ($_SESSION['id'] == true) { ?>
+                            <form method='POST'>
+                                <label> Enchère </label>
+                                <input type='number' name='enchere'>
+                                <button type='submit'>enchérir</button>
 
-                        <form action="<?= $value['id'] ?>" method='POST'>
-                            <label>Enchere</label>
-                            <input type="number" name='enchere'>
-                            <button>enchérir</button>
-                            <?php
-                            $bids = $dbh->query("SELECT * FROM bid WHERE ad_id = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
+                            </form>
+                        <?php } else { ?>
+                            <a href='inscription'>connectez/inscrivez vous pour enchérir</a>
+                        <?php } ?>
 
-                            foreach ($bids as $bid) { ?>
 
-                                <p> <?= $bid['amount_bid'] ?> </p>
-                            <?php } ?>
+
+                        <?php
+                        $bids = $dbh->query("SELECT * FROM bid WHERE ad_id = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
+
+                        foreach ($bids as $bid) { ?>
+
+                            <p> <?= $bid['amount_bid'] ?> </p>
+                        <?php } ?>
 
 
                         </form>
@@ -80,26 +87,22 @@ class ad
                 $ads = $dbh->query("SELECT * FROM ads WHERE ID = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
                 var_dump($ads);
 
-
-
                 foreach ($bids as $bid) {
                     $newEnchere = $_POST['enchere'];
-                    if ($newEnchere > $bid['amount_bid']) {
 
-                        $bids = $dbh->query("UPDATE bid SET amount_bid=$newEnchere, user_id=$value[id] WHERE ad_id = $value[id] ");
-                    } else {
-                        echo 'enchere inferieur a l\'enchere précedente';
-                        echo $newEnchere;
-                    }
-                }
+                    $bids = $dbh->query("UPDATE bid SET amount_bid=$newEnchere, user_id=$value[id] WHERE ad_id = $value[id] ");
+
+                    echo 'enchere inferieur a l\'enchere précedente';
+
+
         ?>
-                <div class='containerAd'>
-                    <div class="listeHome">
-                        <p>bonjour</p>
-                        <li> Enchere : <?= $bid['amount_bid'] ?> </li>
+                    <div class='containerAd'>
+                        <div class="listeHome">
+                            <p>bonjour</p>
+                            <li> Enchere : <?= $bid['amount_bid'] ?> </li>
 
-                    </div>
-            <?php
+                        </div>
+            <?php }
             }
         }
             ?>

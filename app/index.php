@@ -25,6 +25,7 @@ use App\Controllers\Subscribe;
 use App\Controllers\Connect;
 use App\Controllers\validate_Enchere;
 
+session_start();
 /**
  * Requête
  */
