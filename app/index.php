@@ -16,7 +16,6 @@ include_once __DIR__ . "/controllers/connect.php";
 include_once __DIR__ . "/controllers/subscribe.php";
 include_once __DIR__ . "/controllers/ad.php";
 include_once __DIR__ . "/controllers/deconnect.php";
-include_once __DIR__ . "/view/add_ads_view.php";
 
 /* NameSpaces */
 
@@ -87,7 +86,7 @@ $router->get('/Annonce:id', [new Ad(), 'render']);
 
 /* POST / - Annonce */
 
-$router->post('/Annonce:id', [new validate_Bid(), 'validate_bid']);
+$router->post('/Annonce:id', [new Ad(), 'validate_bid']);
 
 /* POST / - Déconnexion */
 
