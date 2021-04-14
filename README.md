@@ -16,7 +16,7 @@
 <h2>Inscription</h2>
 <img width="1276" alt="bid_bid_cars" src="https://user-images.githubusercontent.com/81886172/114773891-e42cbd00-9d6f-11eb-80df-797dd6109149.PNG">
 
-<h2>Connexion/h2>
+<h2>Connexion</h2>
 <img width="1276" alt="bid_bid_cars" src="https://user-images.githubusercontent.com/81886172/114773938-f1e24280-9d6f-11eb-9b6a-5e62361b7504.PNG">
 
 
