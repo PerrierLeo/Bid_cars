@@ -19,6 +19,7 @@ class DefaultPage
         http_response_code(404);
 
 ?>
+        <!-- Début du fichier HTML -->
         <!DOCTYPE html>
         <html>
 
@@ -37,6 +38,7 @@ class DefaultPage
         </body>
 
         </html>
+        <!-- Fin du fichier HTML  -->
 <?php
     }
 }

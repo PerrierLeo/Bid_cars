@@ -9,9 +9,6 @@
 
 namespace App\Controllers;
 
-
-
-
 class Subscribe
 {
     /**
@@ -20,7 +17,7 @@ class Subscribe
     public function render()
     {
 ?>
-
+        <!-- Début du fichier HTML -->
         <!DOCTYPE html>
         <html lang="en">
 
@@ -28,60 +25,80 @@ class Subscribe
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>inscription</title>
+            <link rel="stylesheet" href="assets/styles/style.css" />
 
+            <title>Document</title>
         </head>
 
         <body>
-            <h1> INSCRIPTION </h1>
-            <form action='inscription' method='POST'>
-                <div class='inputForm'>
-                    <label for="firstname">Nom : </label>
-                    <input id='firstname' type='text' name='firstname' placeholder='nom' required>
-                </div>
+            <header>
+                <nav>
+                    <h1 class="titleWebsite"> BID CARS </h1>
+                    <ul>
+                        <li>
+                            <?php if (isset($_SESSION['firstname']) == true) {
+                                echo 'Bonjour' . ' ' . $_SESSION['firstname'];
+                            ?>
+                                <a href="/Bid_Cars">Accueil</a>
+                            <?php } else { ?>
+                                <a href="Connexion">Connexion |</a>
+                                <a href="Inscription">Inscription |</a>
 
-                <div class='inputForm'>
-                    <label for="lastname">Prénom : </label>
-                    <input id='lastname' type='text' name='lastname' placeholder='prénom' required>
-                </div>
+                            <?php } ?>
+                        </li>
+                    </ul>
+                </nav>
+            </header>
 
-                <div class='inputForm'>
-                    <label for="email">Email : </label>
-                    <input id='email' type='email' name='email' placeholder='email' required>
-                </div>
+            <body>
+                <div class="container_form">
+                    <h1> INSCRIPTION </h1>
+                    <form action='Inscription' method='POST'>
+                        <div class='inputForm'>
+                            <input id='firstname' type='text' name='firstname' placeholder='nom' required>
+                        </div>
 
-                <div class='inputForm'>
-                    <label for="password">Password : </label>
-                    <input id='password' type='password' name='password' placeholder='password' required>
-                </div>
+                        <div class='inputForm'>
+                            <input id='lastname' type='text' name='lastname' placeholder='prénom' required>
+                        </div>
 
-                <div class='inputForm'>
-                    <label for="passwordConfirm">Confirmer Password : </label>
-                    <input id='passwordConfirm' type='password' name='passwordConfirm' placeholder='confirmer password' required>
-                </div>
+                        <div class='inputForm'>
+                            <input id='email' type='email' name='email' placeholder='email' required>
+                        </div>
 
-                <button>valider</button>
-        </body>
+                        <div class='inputForm'>
+                            <input id='password' type='password' name='password' placeholder='password' required>
+                        </div>
+
+                        <div class='inputForm'>
+                            <input id='passwordConfirm' type='password' name='passwordConfirm' placeholder='confirmer password' required>
+                        </div>
+
+                        <button class="validation">S'inscrire</button>
+                    </form>
+
+                    <a class="link_sub_co" href="Connexion">Déjà inscrit ? </a>
+
+                </div>
+            </body>
 
         </html>
+        <!-- Fin du fichier HTML -->
     <?php
     }
 
     public function read_data()
     {
 
-        // nettoyage des données
-        require_once __DIR__ . "../../includes/db.php";
+        // Récupération des champs formulaire et nettoyage des données
+        require __DIR__ . "../../includes/db.php";
         $firstname = filter_var($_POST["firstname"]); //, FILTER_SANITIZE_STRING);
         $lastname = filter_var($_POST["lastname"]); //, FILTER_SANITIZE_STRING);
         $email = filter_var($_POST["email"]); //, FILTER_SANITIZE_EMAIL);
         $password = password_hash($_POST['password'], PASSWORD_BCRYPT);
 
-
-
         //variable indiquant si les données sont validées
         $data_validated = true;
-
 
         //validation des données
         if (filter_var($_POST["email"], FILTER_VALIDATE_EMAIL) === false) {
@@ -90,19 +107,14 @@ class Subscribe
 
         //Si les données sont validées 
         if ($data_validated === true) {
+            require __DIR__ . "../../includes/db.php";
             /* Préparation de la requête */
             $query = $dbh->prepare("INSERT INTO users (firstname, lastname, email, password) VALUES (?, ?, ?, ?)");
-            var_dump($dbh);
             /* Execution de la requête */
             $result = $query->execute([$firstname, $lastname, $email, $password]);
-            var_dump($data_validated);
-            var_dump($result);
-            var_dump($query);
-            print_r($dbh->errorInfo());
-            print_r($query->errorInfo()); // pour afficher erreur PDO
         }
     ?>
-
+        <!-- Début du fichier HTML -->
         <!DOCTYPE html>
         <html lang="en">
 
@@ -131,6 +143,7 @@ class Subscribe
         </body>
 
         </html>
+        <!-- Fin du fichier HTML -->
 
 <?php
     }

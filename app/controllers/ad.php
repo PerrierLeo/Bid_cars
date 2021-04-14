@@ -1,27 +1,25 @@
 <?php
 
-/**
- * controllers/home.php - Controleur accueil pour la page d'accueil
- */
-
 /* Namespace */
-
 
 namespace App\Controllers;
 
-class ad
+/* Création de la classe Ad */
+
+class Ad
 {
-
-
-    public function renderend($value)
+    /* Fonction render prenant en compte l'ID de l'annonce contenu dans l'URL ($value) */
+    public function render($value)
     {
 
         require __DIR__ . "../../includes/db.php";
-        $ads = $dbh->query("SELECT * FROM ads WHERE ID = $value[id]")->fetchAll(\PDO::FETCH_ASSOC);
 
+        /* Récupération de l'annonce en fonction de l'ID */
+        $id = filter_var($value['id'], FILTER_SANITIZE_NUMBER_INT);
+        $ad = $dbh->query("SELECT * FROM ads WHERE ID = $id")->FETCH();
 
 ?>
-
+        <!-- Début du fichier HTML  -->
         <!DOCTYPE html>
         <html lang="en">
 
@@ -29,86 +27,113 @@ class ad
             <meta charset="UTF-8">
             <meta http-equiv="X-UA-Compatible" content="IE=edge">
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <link rel="stylesheet" type="text/css" href="assets/styles/style.css" />
-
-            <title>Document</title>
+            <link rel="stylesheet" href="/Bid_cars/assets/styles/style.css">
+            <title>Annonce</title>
         </head>
 
-        <body>
+        <!-- Début header -->
+        <header>
+            <nav>
+                <h1 class="titleWebsite"> BID CARS </h1>
+                <ul>
+                    <li>
+                        <!-- Si session démarrée, affichage du prénom, sinon menu connexion inscription  -->
 
-            <?php foreach ($ads as $ad) { ?>
-                <div class='containerAd'>
-                    <img class="pictures" src='<?= $ad["picture_url"] ?>'>
-                    <div class="listeHome">
-                        <li> marque : <?= $ad['brand'] ?> </li>
-                        <li> modele : <?= $ad['model'] ?> </li>
-                        <li> Année : <?= $ad['year_car'] ?> </li>
-                        <li> date limite d'enchere: <?= $ad['date_ad'] ?> </li>
-                        <li> fin d'enchere : <?= $ad['deadline'] ?> </li>
-                        <li> couleur : <?= $ad['color'] ?> </li>
-                        <li> puissance : <?= $ad['power_car'] ?> </li>
-                        <li> kilometres : <?= $ad['kilometers'] ?> </li>
-                        <li> description : <?= $ad['description'] ?> </li>
-                        <?php if ($_SESSION['id'] == true) { ?>
+                        <?php if (isset($_SESSION['firstname']) == true) {
+                            echo 'Bonjour' . ' ' . $_SESSION['firstname'];
+                        ?>
+                            <form action="Deconnexion" method="POST">
+                                <button type="submit">Déconnexion</button>
+                            </form>
+                            <a href="/Bid_Cars">Accueil</a>
+
+                        <?php } else { ?>
+                            <a href="/Bid_Cars/Connexion">Connexion |</a>
+                            <a href="/Bid_Cars/Inscription">Inscription |</a>
+                            <a href="/Bid_Cars">Accueil</a>
+                        <?php } ?>
+                    </li>
+                </ul>
+            </nav>
+        </header>
+        <!-- Fin header  -->
+
+        <body>
+            <!-- Container principal de la page  -->
+            <div class="container_adDetail">
+                <div class="adDetail">
+                    <div class="left_adDetail">
+                        <img class="" src='<?= $ad["picture_url"] ?>'>
+                    </div>
+
+                    <div class="right_adDetail">
+                        <!-- Affichage des variables de l'annonce récupérées dans la base de données  -->
+                        <span class="brand_adDetail"> <?= $ad['brand'] . ' ' . $ad['model'] ?></span>
+                        <span class="separatorAd"></span>
+                        <span class="year_adDetail"> <?= $ad['year_car'] ?></span>
+                        <span class="color_adDetail"><?= $ad['color'] ?></span>
+                        <span class="power_adDetail"><?= $ad['power_car'] ?></span>
+                        <span class="kilometers_adDetail"><?= $ad['kilometers'] ?> km </span>
+                        <span class="description_adDetail"><?= $ad['description'] ?></span>
+                        <?php if (isset($_SESSION['ID']) == true) { ?>
+
                             <form method='POST'>
                                 <label> Enchère </label>
                                 <input type='number' name='enchere'>
-                                <button type='submit'>enchérir</button>
-
+                                <button type='submit'>Enchérir</button>
                             </form>
+
                         <?php } else { ?>
-                            <a href='inscription'>connectez/inscrivez vous pour enchérir</a>
+
+                            <span class="bidError"><a href='Inscription'>Connectez-vous pour enchérir !</a></span>
+
                         <?php } ?>
 
-
-
+                        <!-- Affichage du prix actuel récupéré dans la base de données  -->
                         <?php
-                        $bids = $dbh->query("SELECT * FROM bid WHERE ad_id = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
+                        $bids = $dbh->query("SELECT * FROM bid")->fetchAll(\PDO::FETCH_ASSOC);
 
                         foreach ($bids as $bid) { ?>
-
-                            <p> <?= $bid['amount_bid'] ?> </p>
+                            <p> Prix actuel : <?= $ad['start_price'] ?>€</p>
                         <?php } ?>
-
-
-                        </form>
+                        <span class="deadline_adDetail">L'enchère se terminera le <?= $ad['deadline'] ?> à 14h59m59s </span>
                     </div>
-        <?php }
-        }
-    } ?>
-        <?php
-        class validate_Enchere
-        {
+                    <span class="date_adDetail"> Annonce ajoutée le <?= $ad['date_ad'] ?></span>
+                </div>
+                <!-- Champ d'enchère accessible uniquement pour un utilisateur connecté  -->
 
-            public function validate_Enchere($value)
-            {
-                require_once __DIR__ . "../../includes/db.php";
-                $bids = $dbh->query("SELECT * FROM bid WHERE ad_id = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
-                $ads = $dbh->query("SELECT * FROM ads WHERE ID = $value[id] ")->fetchAll(\PDO::FETCH_ASSOC);
-                var_dump($ads);
-
-                foreach ($bids as $bid) {
-                    $newEnchere = $_POST['enchere'];
-
-                    $bids = $dbh->query("UPDATE bid SET amount_bid=$newEnchere, user_id=$value[id] WHERE ad_id = $value[id] ");
-
-                    echo 'enchere inferieur a l\'enchere précedente';
-
-
-        ?>
-                    <div class='containerAd'>
-                        <div class="listeHome">
-                            <p>bonjour</p>
-                            <li> Enchere : <?= $bid['amount_bid'] ?> </li>
-
-                        </div>
-            <?php }
-            }
-        }
-            ?>
+            </div>
         </body>
 
         </html>
+        <!-- Fin du fichier HTML  -->
+<?php }
+}
+?>
 
+<?php
+/* Création de la classe validate_Bid correspondant à la mise à jour du prix en fonction de l'entrée utilisateur */
 
-        <?php
+class validate_Bid
+{
+    /* Création de la fonction de validation de l'enchère */
+    public function validate_bid($value)
+    {
+        require __DIR__ . "../../includes/db.php";
+        $id = filter_var($value['id'], FILTER_SANITIZE_NUMBER_INT);
+        $bid = $dbh->query("SELECT * FROM bid WHERE ad_id = $id ")->fetch();
+        $ads = $dbh->query("SELECT * FROM ads WHERE ID = $id ")->fetch();
+        $newBid = $_POST['enchere'];
+        $bidCompare = $ads['start_price'];
+
+        /* Validation de l'enchère */
+        if ($newBid > $bidCompare) {
+            $result = $dbh->exec("UPDATE bid SET amount_bid=$newBid, user_id=$id WHERE ad_id = $id ");
+            $result = $dbh->exec("UPDATE ads SET start_price=$newBid WHERE ID=$id");
+
+            header('Location:Bid_Cars/Annonce/' . $id);
+        } else {
+            echo 'Vous devez enchérir un montant supérieur au prix actuel';
+        }
+    }
+}

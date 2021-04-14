@@ -1,22 +1,273 @@
-.pictures {
-  width: 250px;
+header {
+  background-color: white;
+  border-bottom: 1px solid lightgrey;
+}
+
+html {
+  font-family: roboto;
+}
+
+body {
+  background-color: #f2f2f2;
+}
+
+nav {
+  width: 98%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 10px;
+}
+
+li {
+  list-style-type: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+#hero {
+  background-image: url(../img/3cdc571d57da64c8aac49132f1881476.jpg);
+  background-size: cover;
+  background-position: top center;
+  position: relative;
+  z-index: 1;
+}
+
+.container {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container_form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 70vh;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+}
+
+.container_form input {
+  border-radius: 3px;
+  padding: 6px 6px 6px 6px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.link_sub_co {
+  font-size: 0.9rem;
+  margin-top: 15px;
+  color: grey;
+}
+
+.validation {
+  padding: 6px 3px 6px 3px;
+  background-color: #1866b5;
+  border-radius: 5px;
+  color: white;
+}
+#hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.78;
+  z-index: -1;
+}
+
+#hero .hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  justify-content: flex-start;
+}
+
+#hero::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  width: 100%;
+  background-color: black;
+  opacity: 0.78;
+  z-index: -1;
+}
+
+#hero .hero {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 50px;
+  justify-content: flex-start;
+}
+
+.picAds {
+  width: 270px;
   height: 150px;
 }
-.containerHome {
-  display: flex;
-  width: 100%;
-  flex-wrap: wrap;
+
+.titleSite {
+  font-size: 3rem;
+  color: white;
 }
-.containerAd {
-  border: 1px solid black;
+
+.favoriteTitle {
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.ads {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-right: 1px solid lightgrey;
+  width: 270px;
+  height: 330px;
   margin: 10px;
 }
 
-.buttonHome {
-  height: 5vh;
-  width: 5vw;
+.containerAds {
+  display: flex;
+  flex-wrap: wrap;
+  background-color: white;
+  width: auto;
+  display: flex;
 }
 
-.inputForm {
-  margin: 40px;
+.actuPrice {
+  color: #c4c4c4;
+  font-size: 0.9rem;
+}
+
+.modelVehicle {
+  font-weight: bold;
+}
+
+.price {
+  font-size: 1.4rem;
+  margin-bottom: 10px;
+}
+
+.calendar {
+  margin-left: 20px;
+}
+
+.separatorAd {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 5px;
+  background-color: #d14c2e;
+}
+
+.contentAd {
+  display: flex;
+  justify-content: center;
+  width: 270px;
+}
+
+.separatorKilometer {
+  width: 1px;
+  height: 20px;
+  background-color: lightgrey;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form {
+  width: 200px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+input {
+  margin-top: 3px;
+}
+
+li {
+  text-decoration: none;
+}
+
+ul {
+  display: flex;
+}
+
+.adDetail {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+}
+
+.left_adDetail {
+  width: 50%;
+}
+
+.right_adDetail {
+  width: 50%;
+}
+
+.container_adDetail {
+  margin-top: 10px;
+  height: 100%;
+  background-color: white;
+}
+
+.brand_adDetail {
+  margin-top: 10px;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.model_adDetail {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.right_adDetail {
+  display: flex;
+  flex-direction: column;
+}
+
+.date_adDetail {
+  margin-top: 10px;
+  font-size: 0.7rem;
+  color: #a6a6a6;
+  justify-content: end;
+  align-items: flex-end;
+}
+
+.bidError {
+  margin-top: 10px;
+  font-weight: bold;
+}
+
+.deadline_adDetail {
+  font-style: italic;
+  color: #a6a6a6;
 }

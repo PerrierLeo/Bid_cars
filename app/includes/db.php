@@ -1,17 +1,12 @@
 <?php
 
-
-/**
- * configuration de la connexion à la base de données
+/** 
+ * Configuration de la connexion à la base de données
  */
 
-$db_address = 'mysql:dbname=bid_cars;host=localhost';
-$db_user = 'root';
-$db_password = 'root';
+$db_adress = "mysql:dbname=bid_cars;host=localhost";
+$db_user = "root";
+$db_password = "root";
 
-/**
- * ouverture de la connexion
- */
-
-
-$dbh = new PDO($db_address, $db_user, $db_password);
+/* Ouverture de la connexion */
+$dbh = new PDO($db_adress, $db_user, $db_password);
