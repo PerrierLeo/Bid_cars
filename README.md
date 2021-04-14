@@ -1,5 +1,10 @@
 # Bid_cars
 
+BidCars est une plateforme d'enchère en ligne de véhicule en PHP.
+Technologies utilisées : PHP Vanilla / CSS / HTML / MySQL 
+Premier projet PHP
+
+
 <h2>Home</h2>
 <img width="1276" alt="home_bid_cars" src="https://user-images.githubusercontent.com/81886172/114774325-5c937e00-9d70-11eb-97b9-80b0b7ac38b5.PNG">
 
