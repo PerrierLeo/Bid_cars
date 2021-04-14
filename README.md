@@ -1,7 +1,8 @@
 # Bid_cars
 
 <h2>Home</h2>
-![vue_generale](https://user-images.githubusercontent.com/81886172/114773568-80a28f80-9d6f-11eb-9c81-530bdc4631db.PNG)
+<img width="1276" alt="home_bid_cars" src="https://user-images.githubusercontent.com/81886172/114774325-5c937e00-9d70-11eb-97b9-80b0b7ac38b5.PNG">
+
 
 <h2>Les Annonces</h2>
 ![Annonces](https://user-images.githubusercontent.com/81886172/114773668-9f088b00-9d6f-11eb-83ec-e6c985dcc941.PNG)
