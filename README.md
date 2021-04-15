@@ -16,7 +16,7 @@ Premier projet PHP
 <img width="1276" alt="details_bid_cars" src="https://user-images.githubusercontent.com/81886172/114773738-b47db500-9d6f-11eb-9118-fbc6593c162d.PNG">
 
 <h2>Ajout d'annonce</h2>
-<img width="1276" alt="ad_adds_cars" src="https://user-images.githubusercontent.com/81886172/114878049-24d41700-9e00-11eb-89d7-e842640b1b26.PNG>
+<img width="1276" alt="ad_adds_cars" src="https://user-images.githubusercontent.com/81886172/114878049-24d41700-9e00-11eb-89d7-e842640b1b26.PNG">
 
 
 <h2>Enchère</h2>
